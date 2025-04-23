@@ -1,0 +1,5 @@
+# tickects/tickets.yaml
+port: 8080
+routes:
+  get:
+    /api/v2/tickets/:id: _/api/v2/tickets.zm

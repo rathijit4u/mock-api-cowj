@@ -1,0 +1,1 @@
+java -jar C:\Users\rjs\Documents\GitHub\cowj\app\build\libs\cowj-0.1-SNAPSHOT.jar C:\Users\rjs\Documents\GitHub\mock-api-cowj\tickets\tickets.yaml

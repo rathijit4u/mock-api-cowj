@@ -1,0 +1,34 @@
+# users/users.yaml
+port: 8080
+routes:
+  get:
+    /api/v1/users/:id: _/api/v1/users.zm
+    /api/v1/users: _/api/v1/users.zm
+
+  post:
+    /api/v1/users: _/api/v1/postuser.zom
+
+# route forwarding local /users points to json_place
+proxies:
+  get:
+    /api/v1/users: json_place/users
+  post:
+    /users: json_place/users
+
+# how to load various data sources - plugin based architecture 
+plugins:
+  # the package 
+  cowj.plugins:
+    # items from each package class::field_name
+    curl: CurlWrapper::CURL
+    redis: RedisWrapper::REDIS
+
+# data store connections
+data-sources:
+  redis :
+    type : redis
+    urls: [ "localhost:6379"]
+
+  json_place:
+    type: curl
+    url: https://jsonplaceholder.typicode.com

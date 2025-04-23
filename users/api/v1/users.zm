@@ -1,0 +1,11 @@
+
+/*
+if (req.requestMethod() == "GET"){
+    id = req.params[':id'] ?? ""
+    user = _ds["redis"].get("user:" + id)
+    _log.info("User = {}", user)
+    panic(empty(user), "No user found!")
+    user
+} else if(req.requestMethod() == "POST"){
+    assert
+}*/
