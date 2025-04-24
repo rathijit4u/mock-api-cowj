@@ -1,19 +1,28 @@
 # users/users.yaml
 port: 8080
+
+verify:
+  in: true
+
 routes:
   get:
     /api/v1/users/:id: _/api/v1/users.zm
     /api/v1/users: _/api/v1/users.zm
 
   post:
-    /api/v1/users: _/api/v1/postuser.zom
+    /api/v1/users: _/api/v1/postuser.zm
 
 # route forwarding local /users points to json_place
 proxies:
   get:
-    /api/v1/users: json_place/users
+    /api/v2/users: json_place/users
   post:
     /users: json_place/users
+
+
+filters:
+  before:
+    /api/v2/users: _/proxy_transform.zm
 
 # how to load various data sources - plugin based architecture 
 plugins:
@@ -32,3 +41,10 @@ data-sources:
   json_place:
     type: curl
     url: https://jsonplaceholder.typicode.com
+
+storages:
+  in-mem-storage:
+    read: true # just for the heck of it
+    sep: "/" # default sep is also same
+    paths:
+      ".*" : Person.json
