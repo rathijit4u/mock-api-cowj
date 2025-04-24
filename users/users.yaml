@@ -41,10 +41,3 @@ data-sources:
   json_place:
     type: curl
     url: https://jsonplaceholder.typicode.com
-
-storages:
-  in-mem-storage:
-    read: true # just for the heck of it
-    sep: "/" # default sep is also same
-    paths:
-      ".*" : Person.json

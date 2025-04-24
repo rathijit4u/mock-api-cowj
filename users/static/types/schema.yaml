@@ -7,36 +7,13 @@ verify:
   out: true
 
 routes:
+
   /api/v1/users:
     get:
       params: params.json # this defines parameters
       ok: output.json
 
-  /u2:
-    get:
-      params: params.json # this defines parameters
-      ok: output.json
-
-  /api/v1/users:
-      post:
-        in: Person.json
-        ok: RetVal.json
-        err: RetVal.json
-
-  /invalid:
     post:
       in: Person.json
       ok: RetVal.json
       err: RetVal.json
-
-  /person/*:
-    get:
-      ok: Person.json
-      err: RetVal.json
-
-storages:
-  in-mem-storage:
-    read: true # just for the heck of it
-    sep: "/" # default sep is also same
-    paths:
-      ".*" : Person.json # all storage path matches to this schema
