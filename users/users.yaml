@@ -22,7 +22,11 @@ proxies:
 
 filters:
   before:
-    /api/v2/users: _/proxy_transform.zm
+    /api/v2/users: _/pre_transform.zm
+  
+  after:
+    /api/v1/users: _/post_transform.zm
+    /api/v1/users/:id: _/post_transform.zm
 
 # how to load various data sources - plugin based architecture 
 plugins:
