@@ -15,5 +15,5 @@ routes:
       ok: output.json
 
     post:
-      in: Person.json
+      in: User.json
       created: User.json

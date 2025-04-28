@@ -1,11 +1,11 @@
 id = req.params[':id'] ?? ""
-user = _ds["redis"].get("user:" + id)
+user = _shared["user:" + id] ?? ""
 if(empty(user)){
     em = _ds.json_place.send( "get", "/users/" + id, {:}, req.params , "" )
     assert( em.isSuccessful(), "Got a boom!" )
     result = em.value()
     user = result.body()
-    _ds["redis"].set("user:" + id, user)
+    _shared["user:" + id] = user
 }
 
 resp.body(user)
