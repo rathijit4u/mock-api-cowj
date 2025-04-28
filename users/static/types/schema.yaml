@@ -1,6 +1,7 @@
 labels:
   ok:  "resp.status == 200"
   err:  "resp.status != 200"
+  created: "resp.status == 201"
 
 verify:
   in: true
@@ -15,5 +16,4 @@ routes:
 
     post:
       in: Person.json
-      ok: RetVal.json
-      err: RetVal.json
+      created: User.json

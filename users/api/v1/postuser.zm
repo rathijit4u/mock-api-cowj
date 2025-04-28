@@ -1,0 +1,14 @@
+headers = dict()
+for(header :req.headers){
+    headers[header] = req.headers(header)
+}
+
+em = _ds.json_place.send( "post", "/users", headers, req.params , req.body )
+assert( em.isSuccessful(), "Got a boom!" )
+result = em.value()
+println(type(result.body()))
+user = json(result.body())
+_ds["redis"].set("user:" + user.id, jstr(user))
+resp.status(result.status)
+resp.body(result.body())
+resp.type(result.map["Content-Type"][0])
