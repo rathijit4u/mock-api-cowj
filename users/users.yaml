@@ -22,7 +22,7 @@ proxies:
 
 filters:
   before:
-    /api/v2/users: _/pre_transform.zm
+    /api/v1/users: _/pre_transform.zm
   
   after:
     /api/v1/users: _/post_transform.zm
@@ -41,6 +41,12 @@ data-sources:
   redis :
     type : redis
     urls: [ "localhost:6379"]
+    client-config:
+      usr: default
+      pwd: mypassword
+      db: 0
+
+
 
   json_place:
     type: curl

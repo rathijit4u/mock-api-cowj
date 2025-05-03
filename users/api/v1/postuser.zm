@@ -1,9 +1,10 @@
 headers = dict(req.headers) as {[$.o, req.headers($.o)]}
 
 em = _ds.json_place.send( "post", "/users", headers, req.params , req.body)
-assert( em.isSuccessful(), "Got a boom!" )
+assert( em.isSuccessful(), "Got a boom!", 400 )
 result = em.value()
-user = json(result.body())
-_shared["user:" + user.id] = jstr(user)
+user = json(result.body)
+// _shared["user:" + user.id] = jstr(user)  // cowj key-value store
+_ds["redis"].set("user:" + user.id, jstr(user))
 resp.status(result.status)
-resp.body(result.body())
+resp.body(result.body)
